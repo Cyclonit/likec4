@@ -18,7 +18,8 @@ import {
   IconChevronRight,
   IconFileSymlink,
   IconFocusCentered,
-  IconMenu2
+  IconMenu2,
+  IconSearch
 } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { AnimatePresence, LayoutGroup, m } from 'framer-motion'
@@ -30,6 +31,7 @@ import { ActionIcon, Tooltip } from './_shared'
 import { ChangeAutoLayoutButton } from './ChangeAutoLayoutButton'
 import { ManualLayoutToolsButton } from './ManualLayoutToolsButton'
 import * as css from './styles.css'
+import { openSpotlight } from '@mantine/spotlight'
 
 const historySelector = (s: DiagramState) => ({
   showBurgerMenu: !!s.onBurgerMenuClick,
@@ -174,6 +176,13 @@ export const TopLeftPanel = () => {
         gap={'xs'}>
         {showNavigationButtons && <BackwardForwardButtons />}
         <ActionIconGroup className={css.actionIconGroup} orientation="vertical">
+          <Tooltip label="Search">
+            <ActionIcon
+              onClick={() => openSpotlight()}
+              >
+              <IconSearch />
+            </ActionIcon>
+          </Tooltip>
           {showGoToSource && (
             <Tooltip label="Open source" {...portalProps}>
               <ActionIcon
